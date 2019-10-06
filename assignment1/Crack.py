@@ -1,14 +1,6 @@
 #!/usr/bin/env python
-
-import sys
 import string
 from BitVector import *                                                       
-from collections import Counter
-
-if len(sys.argv) is not 3:                                                    
-    sys.exit('''Needs two command-line arguments, one for '''
-             '''the message file and the other for the '''
-             '''encrypted output file''')
 
 PassPhrase = "I want to learn cryptograph and network security"               
 
@@ -94,7 +86,7 @@ def findScore(temp):
 
 
 #Open encrypted text file and read it
-cipherFile = open(sys.argv[1],'r')
+cipherFile = open( 'ciphertext.txt' ,'r')
 cipherText = cipherFile.read()
 
 #convert cipher text to binary
@@ -175,6 +167,12 @@ for i in range( len( listAscii ) ):
         maxScore = secondScore
         finalEncKey = encKeyBVctr2
 
+ans = ''
 for i in range( len( pxorkBlocks ) ):
     mystring = binStrToAsciiStr( str( finalEncKey ^ pxorkBlocks[i] ) )
-    print( mystring, end='')
+    ans += mystring
+
+# Write decrypted text to the output file:
+FILEOUT = open( "recoveredtext.txt" , 'w')                                
+FILEOUT.write(ans)    
+FILEOUT.close()       

@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-
-
-
 ###  Call syntax:
 ###
 ###       Dncrypt.py  encrypted_file.txt  output.txt
